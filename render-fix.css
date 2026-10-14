@@ -1,0 +1,6 @@
+/* Content stays readable even if scripts or observers are unavailable. */
+.reveal,
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
