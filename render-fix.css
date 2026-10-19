@@ -4,3 +4,157 @@
   opacity: 1;
   transform: none;
 }
+
+/* Hero: two tabs now (Producimos / Suministramos). */
+.hero-tabs {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Services: five cards, the last one fills the remaining row. */
+@media (min-width: 561px) {
+  .service-grid > .card:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contact phone line */
+.contact .contact-phone {
+  margin: 4px 0 0;
+  font-size: 15px;
+}
+
+.contact .contact-phone a,
+.footer p a {
+  color: var(--mint);
+  font-weight: 700;
+}
+
+/* FAQ */
+.faq {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(12, 25, 19, .84);
+  transition: border-color .2s;
+}
+
+.faq-item[open],
+.faq-item:hover {
+  border-color: #397354;
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 24px;
+  font-size: 17px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  color: var(--mint);
+  font-size: 24px;
+  line-height: 1;
+  transition: transform .2s;
+}
+
+.faq-item[open] summary::after { transform: rotate(45deg); }
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+  border-radius: 14px;
+}
+
+.faq-item p {
+  margin: 0;
+  padding: 0 24px 20px;
+  color: var(--muted);
+}
+
+.faq-cta { margin-top: 22px; }
+
+/* Floating WhatsApp button */
+.wa-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 58px;
+  padding: 0 20px 0 16px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #062b14;
+  font-size: 14px;
+  font-weight: 750;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35), 0 0 0 0 rgba(37, 211, 102, .45);
+  transition: transform .2s ease, box-shadow .2s ease;
+  animation: wa-pulse 2.8s ease-out 1.5s 3;
+}
+
+.wa-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .4);
+}
+
+.wa-float:focus-visible {
+  outline: 3px solid var(--mint);
+  outline-offset: 3px;
+}
+
+.wa-float svg {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+}
+
+@keyframes wa-pulse {
+  0% { box-shadow: 0 10px 30px rgba(0, 0, 0, .35), 0 0 0 0 rgba(37, 211, 102, .45); }
+  70% { box-shadow: 0 10px 30px rgba(0, 0, 0, .35), 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 10px 30px rgba(0, 0, 0, .35), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+@media (max-width: 560px) {
+  .wa-float {
+    right: 16px;
+    bottom: 16px;
+    width: 58px;
+    padding: 0;
+    justify-content: center;
+  }
+  .wa-float-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .footer {
+    padding-bottom: 96px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-float { animation: none; }
+}
